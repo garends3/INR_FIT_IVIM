@@ -1,0 +1,38 @@
+experiment_name: IVIM_p02_invivo # Name of the experiment, used for saving files
+
+model_name: IVIM # Only option in this repository (for (MSMT-)CSD see https://github.com/tomhend/MSMT-CSD_INR)
+output_calculator: IVIM # Only option in this repository
+loss_function_name: mselossavgl2noneg # Choose from: mselossavgl2noneg (MSE loss), ricianlogloss (requires s_noise parameter)
+#s_noise: 0.0166 # Only used for ricianlogloss, can be removed for mse loss
+
+gaussian_encoding: True # Deprecated, keep on true
+dataset_name: IVIM # Only option in this repository
+bval_delta: 0.1 # define margins on b-values
+
+scale_data: norm # Leave on norm for now (normalization based on 95th percentile of b0)
+
+clip_gradients: 0 # 0 is no clipping
+lr_scheduler: True # Use of learning rate scheduler, settings hard-coded in main.py
+
+width: 176
+height: 176
+depth: 60
+
+log_freq: 1000 # Passed to the trainer, useful if you want to implement your own logging system.
+
+
+paths:
+  nifti: data\..\dwi.nii.gz # 4D DWI nifti (X, Y, Z, N_b-values)
+  mask: data\..\tumor_mask.nii # binary ROI mask, same grid as nifti
+  fsl_bvals: data\..\dwi.bval # one b-value per line
+  output: data/IVIM/runs/ # output folder, created automatically
+
+train_cfg:
+  lpos: 2500 # Number of positional encodings (/2)
+  n_layers: 3 # Number of layers in the network
+  hidden_dim: 2048 # Size of hidden dims
+  lr: 0.0001 # Learning rate
+  epochs: 50 # Number of epochs
+  batch_size: 300 # Batch size
+  lambda: 5 # Unused for mselossavgl2noneg/ricianlogloss (no non-negativity term for IVIM); kept for config compatibility
+  sigma: 8 # Variance of the normal distribution where the encoding frequencies are sampled from
