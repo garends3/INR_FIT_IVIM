@@ -1,4 +1,4 @@
-# IVIM-INR
+# INR_FIT_IVIM
 
 Voxel-wise IVIM (intravoxel incoherent motion) fitting using an implicit
 neural representation (INR). Instead of fitting each voxel independently,
