@@ -6,10 +6,6 @@ a small coordinate-based MLP is trained to map spatial position directly
 to the IVIM parameters (f, D, D*) and S0, using the acquired diffusion-
 weighted signal as supervision.
 
-Code accompanying: Arends, Gerrit & Fitski, Matthijs et al.
-"Direct correlation of intravoxel incoherent motion imaging based on implicit neural representations and histopathology in pediatric Wilms’ tumors: can it differentiate between subtypes?."
-
-Code is derived from fitting algorithms for https://github.com/tomhend/MSMT-CSD_INR ((MSMT-)CSD) and https://github.com/tomhend/Standard_model_INR/tree/main (Standard Model of White Matter)
 
 ## Installation
 
